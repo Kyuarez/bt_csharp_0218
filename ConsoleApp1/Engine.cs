@@ -41,12 +41,12 @@ namespace ConsoleApp1
 
         public void Load()
         {
-            scene = new Scene(10, 10);
+            scene = new Scene(0);
         }
 
         public void Load(int stageLevel)
         {
-            scene = new Scene(10 + stageLevel, 10 + stageLevel);
+            scene = new Scene(stageLevel);
         }
 
         public void ProcessInput()

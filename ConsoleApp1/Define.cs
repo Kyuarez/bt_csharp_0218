@@ -13,6 +13,9 @@ namespace ConsoleApp1
         public const char SHAPE_PLAYER = 'P';
         public const char SHAPE_MONSTER = 'M';
         public const char SHAPE_GOAL = 'G';
+
+        public const int MAPSIZE_X_DEFAULT = 10;
+        public const int MAPSIZE_Y_DEFAULT = 10;
     }
 
     public struct Vector2

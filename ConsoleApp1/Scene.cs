@@ -13,14 +13,20 @@ namespace ConsoleApp1
     public class Scene
     {
         public static GameObject[] gameObjects;
-        int useGameObjectCount = 0;
+        
+        private int useGameObjectCount = 0;
+        
+        private int turnCount = 0; // 남은 턴?
 
-        public Scene(int sizeX, int sizeY)
+        public Scene(int stageLevel)
         {
-            gameObjects = new GameObject[sizeX * sizeY];
+            int mapSizeX = Define.MAPSIZE_X_DEFAULT + stageLevel;
+            int mapSizeY = Define.MAPSIZE_Y_DEFAULT + stageLevel;
+            gameObjects = new GameObject[mapSizeX * mapSizeY];
             useGameObjectCount = 0;
+            turnCount = 0;
 
-            string[] map = CreateTextMap(sizeX, sizeY);
+            string[] map = CreateTextMap(mapSizeX, mapSizeY);
             for (int y = 0; y < map.Length; y++)
             {
                 for (int x = 0; x < map[y].Length; x++)
@@ -69,6 +75,7 @@ namespace ConsoleApp1
                 else
                 {
                     //일단 고정값. (나중에 랜덤값)
+                    //뭔가 Procedural 적인 맵 만들고 싶다.. ㅠㅠ
                     if (i == 1)
                     {
                         oneLine = Define.SHAPE_WALL + new string(Define.SHAPE_PLAYER, 1) + new string(Define.SHAPE_FLOOR, x - 3) + Define.SHAPE_WALL;
@@ -120,6 +127,13 @@ namespace ConsoleApp1
             {
                 gameObjects[i].Render();
             }
+
+            turnCount--;
+        }
+
+        public void CheckLimitTurn()
+        {
+            
         }
 
         public static GameObject GetGameObjectByVector(Vector2 position)
