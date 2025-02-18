@@ -15,7 +15,7 @@ namespace ConsoleApp1
         public static GameObject[] gameObjects;
         int useGameObjectCount = 0;
 
-        public Scene(int sizeX, int sizeY) 
+        public Scene(int sizeX, int sizeY)
         {
             gameObjects = new GameObject[sizeX * sizeY];
             useGameObjectCount = 0;
@@ -61,7 +61,7 @@ namespace ConsoleApp1
             for (int i = 0; i < textMap.Length; i++)
             {
                 string oneLine = string.Empty;
-                if(i == 0 || i == (textMap.Length - 1))
+                if (i == 0 || i == (textMap.Length - 1))
                 {
                     oneLine = new string(Define.SHAPE_WALL, x);
                     textMap[i] = oneLine;
@@ -69,7 +69,7 @@ namespace ConsoleApp1
                 else
                 {
                     //일단 고정값. (나중에 랜덤값)
-                    if(i == 1)
+                    if (i == 1)
                     {
                         oneLine = Define.SHAPE_WALL + new string(Define.SHAPE_FLOOR, x - 3) + Define.SHAPE_PLAYER + Define.SHAPE_WALL;
                     }
@@ -77,7 +77,7 @@ namespace ConsoleApp1
                     {
                         oneLine = Define.SHAPE_WALL + new string(Define.SHAPE_FLOOR, x - 3) + Define.SHAPE_MONSTER + Define.SHAPE_WALL;
                     }
-                    else if(i == textMap.Length - 2)
+                    else if (i == textMap.Length - 2)
                     {
                         oneLine = Define.SHAPE_WALL + new string(Define.SHAPE_FLOOR, x - 3) + Define.SHAPE_GOAL + Define.SHAPE_WALL;
                     }
@@ -95,6 +95,15 @@ namespace ConsoleApp1
         {
             gameObjects[useGameObjectCount] = gameObject;
             useGameObjectCount++;
+        }
+
+        //충돌 체크
+        public void FixedUpdate()
+        {
+            for (int i = 0; i < gameObjects.Length; i++)
+            {
+                gameObjects[i].FixedUpdate();
+            }
         }
 
         public void Update()

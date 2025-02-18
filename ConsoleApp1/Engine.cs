@@ -34,12 +34,7 @@ namespace ConsoleApp1
             get { return isRunning; }
             set 
             {
-                if(value == false)
-                {
-                    Console.Clear();
-                    Console.WriteLine("게임 오버");
-                }
-                isRunning = value; 
+                isRunning = value;
             }
         }
 
@@ -58,6 +53,10 @@ namespace ConsoleApp1
         {
             Input.Process();
         }
+        public void FixedUpate()
+        {
+            scene.FixedUpdate();
+        }
 
         public void Update()
         {
@@ -70,16 +69,30 @@ namespace ConsoleApp1
             scene.Render();
         }
 
+
         public void Run()
         {
             isRunning = true;
 
             while (isRunning) 
             {
+                FixedUpate();
                 ProcessInput();
                 Update();
                 Render();
             }
+
+            if (false == isRunning) 
+            {
+                OnApplicationQuit();
+            }
+        }
+
+        private void OnApplicationQuit()
+        {
+            Console.Clear();
+            Console.WriteLine("게임 오버");
+            Console.WriteLine($"클리어한 횟수 : {stageLevel}");
         }
 
         public void UpgradeNextStage()

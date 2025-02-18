@@ -12,6 +12,11 @@ namespace ConsoleApp1
         public Vector2 position;
         public char shape;
 
+        public virtual void FixedUpdate()
+        {
+
+        }
+
         public virtual void Update()
         {
 

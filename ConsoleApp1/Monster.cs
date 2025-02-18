@@ -15,6 +15,11 @@ namespace ConsoleApp1
             this.shape = shape;
         }
 
+        public override void FixedUpdate()
+        {
+            CheckOnCollision();
+        }
+
         public override void Update()
         {
             Random random = new Random();
@@ -44,7 +49,11 @@ namespace ConsoleApp1
                 return;
             }
             position = move;
+            CheckOnCollision();
+        }
 
+        private void CheckOnCollision()
+        {
             char collisionShape = OnCollision(position);
             switch (collisionShape)
             {
@@ -55,7 +64,6 @@ namespace ConsoleApp1
                     break;
             }
         }
-
 
     }
 }

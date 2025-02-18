@@ -14,13 +14,16 @@ namespace ConsoleApp1
             this.position = position;
             this.shape = shape;
         }
-
-        public override void Update() 
+        public override void FixedUpdate()
+        {
+            CheckOnCollision();
+        }
+        public override void Update()
         {
             Vector2 move = position;
-            if(true == Input.GetKeyDonw(ConsoleKey.UpArrow))
+            if (true == Input.GetKeyDonw(ConsoleKey.UpArrow))
             {
-                move = new Vector2 (position.x, position.y - 1);
+                move = new Vector2(position.x, position.y - 1);
             }
             else if (true == Input.GetKeyDonw(ConsoleKey.DownArrow))
             {
@@ -40,7 +43,11 @@ namespace ConsoleApp1
                 return;
             }
             position = move;
+            CheckOnCollision();
+        }
 
+        private void CheckOnCollision()
+        {
             char collisionShape = OnCollision(position);
             switch (collisionShape)
             {
@@ -53,7 +60,6 @@ namespace ConsoleApp1
                 default:
                     break;
             }
-
         }
     }
 }
