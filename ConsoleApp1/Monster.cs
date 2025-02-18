@@ -40,7 +40,7 @@ namespace ConsoleApp1
             }
             else if (rndNum == 3)
             {
-                move.y++;
+                move.x++;
             }
 
 

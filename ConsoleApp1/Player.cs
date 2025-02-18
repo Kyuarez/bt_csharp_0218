@@ -40,7 +40,7 @@ namespace ConsoleApp1
 
             if (OnCollisionByShape(move, Define.SHAPE_WALL))
             {
-                CheckOnCollision();
+
                 return;
             }
             position = move;
