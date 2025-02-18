@@ -71,7 +71,7 @@ namespace ConsoleApp1
                     //일단 고정값. (나중에 랜덤값)
                     if (i == 1)
                     {
-                        oneLine = Define.SHAPE_WALL + new string(Define.SHAPE_FLOOR, x - 3) + Define.SHAPE_PLAYER + Define.SHAPE_WALL;
+                        oneLine = Define.SHAPE_WALL + new string(Define.SHAPE_PLAYER, 1) + new string(Define.SHAPE_FLOOR, x - 3) + Define.SHAPE_WALL;
                     }
                     else if (i == textMap.Length - 3)
                     {
