@@ -10,8 +10,11 @@ namespace ConsoleApp1
     {
         public Wall(Vector2 position, char shape)
         {
+            this.name = GetType().Name;
             this.position = position;
             this.shape = shape;
+            orderLayer = 2;
+            isCollide = true;
         }
 
         

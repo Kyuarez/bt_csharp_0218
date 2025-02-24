@@ -11,56 +11,70 @@ namespace ConsoleApp1
     {
         public Player(Vector2 position, char shape)
         {
+            this.name = GetType().Name;
             this.position = position;
             this.shape = shape;
+            orderLayer = 4;
+            isTrigger = true;
         }
         public override void FixedUpdate()
         {
-            CheckOnCollision();
+            OnTrigger(position);
         }
         public override void Update()
         {
             Vector2 move = position;
             if (true == Input.GetKeyDonw(ConsoleKey.UpArrow))
             {
-                move = new Vector2(position.x, position.y - 1);
+                if(false == PredictCollision(new Vector2(position.x, position.y - 1)))
+                {
+                    move = new Vector2(position.x, position.y - 1);
+                }
             }
             else if (true == Input.GetKeyDonw(ConsoleKey.DownArrow))
             {
-                move = new Vector2(position.x, position.y + 1);
+                if (false == PredictCollision(new Vector2(position.x, position.y + 1)))
+                {
+                    move = new Vector2(position.x, position.y + 1);
+                }
             }
             else if (true == Input.GetKeyDonw(ConsoleKey.LeftArrow))
             {
-                move = new Vector2(position.x - 1, position.y);
+                if (false == PredictCollision(new Vector2(position.x - 1, position.y)))
+                {
+                    move = new Vector2(position.x - 1, position.y);
+                }
             }
             else if (true == Input.GetKeyDonw(ConsoleKey.RightArrow))
             {
-                move = new Vector2(position.x + 1, position.y);
+                if (false == PredictCollision(new Vector2(position.x + 1, position.y)))
+                {
+                    move = new Vector2(position.x + 1, position.y);
+                }
             }
 
-            if (OnCollisionByShape(move, Define.SHAPE_WALL))
-            {
-
-                return;
-            }
             position = move;
-            CheckOnCollision();
         }
 
-        private void CheckOnCollision()
+        public override void OnTrigger(Vector2 position)
         {
-            char collisionShape = OnCollision(position);
-            switch (collisionShape)
+            for (int i = 0; i < Engine.Instance.scene.GetAllGameObjects.Count; i++)
             {
-                case Define.SHAPE_MONSTER:
-                    Engine.Instance.IsRunning = false;
-                    break;
-                case Define.SHAPE_GOAL:
-                    Engine.Instance.UpgradeNextStage();
-                    break;
-                default:
-                    break;
+                GameObject obj = Engine.Instance.scene.GetAllGameObjects[i];
+
+                if (obj.isTrigger == true && obj.position == position)
+                {
+                    if(obj.GetType() == typeof(Monster))
+                    {
+                        Engine.Instance.IsRunning = false;
+                    }
+                    else if (obj.GetType() == typeof(Goal))
+                    {
+                        Engine.Instance.UpgradeNextStage();
+                    }
+                }
             }
+
         }
     }
 }

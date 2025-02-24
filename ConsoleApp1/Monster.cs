@@ -11,13 +11,16 @@ namespace ConsoleApp1
     {
         public Monster(Vector2 position, char shape)
         {
+            this.name = GetType().Name;
             this.position = position;
             this.shape = shape;
+            orderLayer = 5;
+            isTrigger = true;
         }
 
         public override void FixedUpdate()
         {
-            CheckOnCollision();
+            //CheckOnCollision();
         }
 
         public override void Update()
@@ -28,43 +31,34 @@ namespace ConsoleApp1
 
             if (rndNum == 0)
             {
-                move.y--;
+                if (false == PredictCollision(new Vector2(position.x, position.y - 1)))
+                {
+                    move = new Vector2(position.x, position.y - 1);
+                }
             }
             else if (rndNum == 1)
             {
-                move.y++;
+                if (false == PredictCollision(new Vector2(position.x, position.y + 1)))
+                {
+                    move = new Vector2(position.x, position.y + 1);
+                }
             }
             else if (rndNum == 2)
             {
-                move.x--;
+                if (false == PredictCollision(new Vector2(position.x - 1, position.y)))
+                {
+                    move = new Vector2(position.x - 1, position.y);
+                }
             }
             else if (rndNum == 3)
             {
-                move.x++;
+                if (false == PredictCollision(new Vector2(position.x + 1, position.y)))
+                {
+                    move = new Vector2(position.x + 1, position.y);
+                }
             }
 
-
-            if (OnCollisionByShape(move, Define.SHAPE_WALL) || OnCollisionByShape(move, Define.SHAPE_GOAL))
-            {
-                CheckOnCollision();
-                return;
-            }
             position = move;
-            CheckOnCollision();
         }
-
-        private void CheckOnCollision()
-        {
-            char collisionShape = OnCollision(position);
-            switch (collisionShape)
-            {
-                case Define.SHAPE_PLAYER:
-                    Engine.Instance.IsRunning = false;
-                    break;
-                default:
-                    break;
-            }
-        }
-
     }
 }

@@ -14,8 +14,7 @@ namespace ConsoleApp1
         public const char SHAPE_MONSTER = 'M';
         public const char SHAPE_GOAL = 'G';
 
-        public const int MAPSIZE_X_DEFAULT = 10;
-        public const int MAPSIZE_Y_DEFAULT = 10;
+        public const string FILEPATH_MAP = "C:\\Users\\user\\Documents\\GitHub\\bt_csharp_0218\\ConsoleApp1\\";
     }
 
     public struct Vector2
@@ -37,5 +36,21 @@ namespace ConsoleApp1
 
         public int x;
         public int y;
+    }
+
+    public class CustomException : Exception
+    {
+        public CustomException() : base("이거 내가 만든 예외")
+        {
+
+        }
+    }
+
+    public class WrongPasswordException : Exception
+    {
+        public WrongPasswordException() : base("비번 틀렸는데요.")
+        {
+
+        }
     }
 }

@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1.csproj", "{F37BD5B3-42B1-4FB3-B11B-7506C9187CBC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructureTK", "..\DataStructure01\DataStructureTK.csproj", "{61D18219-6577-4619-847D-06D5087BC16C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bitCalculate", "..\bitCalculate\bitCalculate.csproj", "{992AA479-DC63-4B0B-B488-95B046C109BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecretMap", "..\SecretMap\SecretMap.csproj", "{5BCFDE73-8D9D-4EFC-AF08-E557CA98CA82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPOT", "..\NPOT\NPOT.csproj", "{28900E66-07A7-44B8-900D-3FFF750B031E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{61D18219-6577-4619-847D-06D5087BC16C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61D18219-6577-4619-847D-06D5087BC16C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61D18219-6577-4619-847D-06D5087BC16C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{992AA479-DC63-4B0B-B488-95B046C109BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{992AA479-DC63-4B0B-B488-95B046C109BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{992AA479-DC63-4B0B-B488-95B046C109BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{992AA479-DC63-4B0B-B488-95B046C109BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BCFDE73-8D9D-4EFC-AF08-E557CA98CA82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BCFDE73-8D9D-4EFC-AF08-E557CA98CA82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BCFDE73-8D9D-4EFC-AF08-E557CA98CA82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BCFDE73-8D9D-4EFC-AF08-E557CA98CA82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28900E66-07A7-44B8-900D-3FFF750B031E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28900E66-07A7-44B8-900D-3FFF750B031E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28900E66-07A7-44B8-900D-3FFF750B031E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28900E66-07A7-44B8-900D-3FFF750B031E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

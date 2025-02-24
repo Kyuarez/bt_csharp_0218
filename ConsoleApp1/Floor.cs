@@ -10,13 +10,10 @@ namespace ConsoleApp1
     {
         public Floor(Vector2 position, char shape)
         {
+            this.name = GetType().Name;
             this.position = position;
             this.shape = shape;
-        }
-
-        public override void Render()
-        {
-            
+            orderLayer = 1;
         }
     }
 }

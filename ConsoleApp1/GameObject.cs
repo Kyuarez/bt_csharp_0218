@@ -11,6 +11,9 @@ namespace ConsoleApp1
         public string name;
         public Vector2 position;
         public char shape;
+        public int orderLayer; //Rendering Order
+        public bool isTrigger = false;
+        public bool isCollide = false;
 
         public virtual void FixedUpdate()
         {
@@ -29,35 +32,25 @@ namespace ConsoleApp1
             Console.Write(shape);
         }
 
-        public char OnCollision(Vector2 position)
+        public bool PredictCollision(Vector2 position)
         {
-            GameObject obj = Scene.GetGameObjectByVector(position);
-            if (obj == null) 
+            for (int i = 0; i < Engine.Instance.scene.GetAllGameObjects.Count; i++)
             {
-                return Define.SHAPE_FLOOR;
+                GameObject obj = Engine.Instance.scene.GetAllGameObjects[i];
+
+                if (obj.isCollide == true && obj.position == position)
+                {
+                    return true;
+                }
             }
 
-            if(obj.shape == Define.SHAPE_FLOOR)
-            {
-                return Define.SHAPE_FLOOR;
-            }
-            return obj.shape;
-        }
-
-        //postion : mine, shape : subject that wanted to check 
-        public bool OnCollisionByShape(Vector2 position, char shape)
-        {
-            GameObject obj = Scene.GetGameObjectByVector(position);
-            if (obj == null)
-            {
-                return false;
-            }
-
-            if (obj.shape == shape)
-            {
-                return true;
-            }
             return false;
         }
+
+        public virtual void OnTrigger(Vector2 position)
+        {
+
+        }
+        
     }
 }
