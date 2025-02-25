@@ -30,7 +30,6 @@ namespace ConsoleApp1
         static public char[,] backBuffer = new char[20, 40];
         static public char[,] frontBuffer = new char[20, 40];
 
-
         protected bool isRunning;
         protected int stageLevel;
 
@@ -158,13 +157,26 @@ namespace ConsoleApp1
             isRunning = true;
             Console.CursorVisible = false;
 
+            //double fps = 1.0 / Time.DeltaTime.TotalMilliseconds;
+            float frameTime = 1000.0f / 60.0f;
+            float elapsedTime = 0.0f;
+
             while (isRunning) 
             {
-                FixedUpate();
-                ProcessInput();
-                Update();
-                Render();
-                Input.ClearInput();
+                Time.Update();
+                if(elapsedTime >= frameTime)
+                {
+                    FixedUpate();
+                    ProcessInput();
+                    Update();
+                    Render();
+                    Input.ClearInput();
+                    elapsedTime = 0.0f;
+                }
+                else
+                {
+                    elapsedTime += Time.DeltaTime;
+                }
             }
 
             if (false == isRunning) 
