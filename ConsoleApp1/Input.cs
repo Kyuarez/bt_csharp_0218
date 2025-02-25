@@ -14,7 +14,15 @@ namespace ConsoleApp1
 
         public static void Process()
         {
-            keyInfo = Console.ReadKey();
+            if (true == Console.KeyAvailable)
+            {
+                keyInfo = Console.ReadKey(true);
+            }
+        }
+
+        public static void ClearInput()
+        {
+            keyInfo = new ConsoleKeyInfo();
         }
 
         public static bool GetKeyDonw(ConsoleKey keycode)

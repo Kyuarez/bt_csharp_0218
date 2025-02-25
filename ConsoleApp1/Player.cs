@@ -66,7 +66,7 @@ namespace ConsoleApp1
                 {
                     if(obj.GetType() == typeof(Monster))
                     {
-                        Engine.Instance.IsRunning = false;
+                        //Engine.Instance.IsRunning = false;
                     }
                     else if (obj.GetType() == typeof(Goal))
                     {

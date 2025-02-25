@@ -28,8 +28,11 @@ namespace ConsoleApp1
         public virtual void Render()
         {
             //x,y 위치에 shape 출력
-            Console.SetCursorPosition(position.x, position.y);
-            Console.Write(shape);
+            //Console.SetCursorPosition(position.x, position.y);
+            //Console.Write(shape);
+
+            //Input to Buffer
+            Engine.backBuffer[position.y, position.x] = shape;
         }
 
         public bool PredictCollision(Vector2 position)

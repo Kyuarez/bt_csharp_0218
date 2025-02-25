@@ -26,6 +26,11 @@ namespace ConsoleApp1
         }
         #endregion
 
+        //더블 버퍼링
+        static public char[,] backBuffer = new char[20, 40];
+        static public char[,] frontBuffer = new char[20, 40];
+
+
         protected bool isRunning;
         protected int stageLevel;
 
@@ -115,6 +120,7 @@ namespace ConsoleApp1
         {
             Input.Process();
         }
+
         public void FixedUpate()
         {
             scene.FixedUpdate();
@@ -127,14 +133,30 @@ namespace ConsoleApp1
         
         public void Render()
         {
-            Console.Clear();
             scene.Render();
+
+            for (int y = 0; y < backBuffer.GetLength(0); y++)
+            {
+                for (int x = 0; x < backBuffer.GetLength(1); x++)
+                {
+                    //back <-> front (flip)
+                    if (frontBuffer[y, x] != null && frontBuffer[y, x].Equals(backBuffer[y, x]))
+                    {
+                        continue;
+                    }
+
+                    Console.SetCursorPosition(x, y);
+                    Console.Write(backBuffer[y, x]);
+                    frontBuffer[y, x] = backBuffer[y, x];
+                }
+            }
         }
 
 
         public void Run()
         {
             isRunning = true;
+            Console.CursorVisible = false;
 
             while (isRunning) 
             {
@@ -142,6 +164,7 @@ namespace ConsoleApp1
                 ProcessInput();
                 Update();
                 Render();
+                Input.ClearInput();
             }
 
             if (false == isRunning) 

@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecretMap", "..\SecretMap\S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPOT", "..\NPOT\NPOT.csproj", "{28900E66-07A7-44B8-900D-3FFF750B031E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TKDynamicArray", "..\TKDynamicArray\TKDynamicArray.csproj", "{B288EFC4-E305-46E3-A942-AF6AC7F4F167}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TKLinkedList", "..\TKLinkedList\TKLinkedList.csproj", "{9CE968B4-39A5-498B-80D4-632291729F95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{28900E66-07A7-44B8-900D-3FFF750B031E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28900E66-07A7-44B8-900D-3FFF750B031E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28900E66-07A7-44B8-900D-3FFF750B031E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B288EFC4-E305-46E3-A942-AF6AC7F4F167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B288EFC4-E305-46E3-A942-AF6AC7F4F167}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B288EFC4-E305-46E3-A942-AF6AC7F4F167}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B288EFC4-E305-46E3-A942-AF6AC7F4F167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CE968B4-39A5-498B-80D4-632291729F95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CE968B4-39A5-498B-80D4-632291729F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CE968B4-39A5-498B-80D4-632291729F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CE968B4-39A5-498B-80D4-632291729F95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
