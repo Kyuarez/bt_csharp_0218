@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TKDynamicArray", "..\TKDyna
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TKLinkedList", "..\TKLinkedList\TKLinkedList.csproj", "{9CE968B4-39A5-498B-80D4-632291729F95}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDL_Sample", "..\SDL_Sample\SDL_Sample.csproj", "{DE0F2794-BA6E-4F54-A653-1BD4E5BFE6E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{9CE968B4-39A5-498B-80D4-632291729F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CE968B4-39A5-498B-80D4-632291729F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CE968B4-39A5-498B-80D4-632291729F95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE0F2794-BA6E-4F54-A653-1BD4E5BFE6E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE0F2794-BA6E-4F54-A653-1BD4E5BFE6E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE0F2794-BA6E-4F54-A653-1BD4E5BFE6E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE0F2794-BA6E-4F54-A653-1BD4E5BFE6E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

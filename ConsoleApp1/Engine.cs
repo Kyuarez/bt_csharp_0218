@@ -33,6 +33,8 @@ namespace ConsoleApp1
         protected bool isRunning;
         protected int stageLevel;
 
+        protected CoroutineManager coManager;
+
         public bool IsRunning
         {
             get { return isRunning; }
@@ -154,6 +156,8 @@ namespace ConsoleApp1
 
         public void Run()
         {
+            coManager =  new CoroutineManager();
+
             isRunning = true;
             Console.CursorVisible = false;
 
@@ -169,6 +173,7 @@ namespace ConsoleApp1
                     FixedUpate();
                     ProcessInput();
                     Update();
+                    coManager.Update();
                     Render();
                     Input.ClearInput();
                     elapsedTime = 0.0f;
