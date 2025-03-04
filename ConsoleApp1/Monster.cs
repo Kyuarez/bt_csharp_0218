@@ -18,6 +18,11 @@ namespace ConsoleApp1
             this.shape = shape;
             orderLayer = 5;
             isTrigger = true;
+
+            color.r = 255;
+            color.g = 0;
+            color.b = 0;
+            color.a = 255;
         }
 
         public override void FixedUpdate()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDL2;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,8 @@ namespace ConsoleApp1
         public int orderLayer; //Rendering Order
         public bool isTrigger = false;
         public bool isCollide = false;
+
+        public SDL.SDL_Color color;
 
         public virtual void FixedUpdate()
         {
@@ -33,6 +36,14 @@ namespace ConsoleApp1
 
             //Input to Buffer
             Engine.backBuffer[position.y, position.x] = shape;
+            SDL.SDL_SetRenderDrawColor(Engine.Instance.myRenderer, color.r, color.g, color.b, color.a);
+            SDL.SDL_Rect Rect;
+            Rect.x = position.x * 30;
+            Rect.y = position.y * 30;
+            Rect.w = 30;
+            Rect.h = 30;
+
+            SDL.SDL_RenderFillRect(Engine.Instance.myRenderer, ref Rect);
         }
 
         public bool PredictCollision(Vector2 position)

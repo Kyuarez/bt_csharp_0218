@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDL2;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,41 @@ namespace ConsoleApp1
             }
         }
 
+        public IntPtr myWindow;
+        public IntPtr myRenderer;
+        public SDL.SDL_Event myEvent;
+
+        public bool Init()
+        {
+            if (SDL.SDL_Init(SDL.SDL_INIT_EVERYTHING) < 0)
+            {
+                Console.WriteLine("INIT FAIL");
+                return false;
+            }
+
+            //Window 
+            myWindow = SDL.SDL_CreateWindow(
+                "Game",
+                100, 100,
+                640, 480,
+                SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN
+                );
+
+            //GUI (붓)
+            myRenderer = SDL.SDL_CreateRenderer(myWindow, -1, SDL.SDL_RendererFlags.SDL_RENDERER_ACCELERATED |
+                SDL.SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC |
+                SDL.SDL_RendererFlags.SDL_RENDERER_TARGETTEXTURE);
+
+            return true;
+        }
+
+        public bool Quit()
+        {
+            SDL.SDL_DestroyRenderer(myRenderer);
+            SDL.SDL_DestroyWindow(myWindow);
+            SDL.SDL_Quit();
+            return true;
+        }
 
         public void Load(string fileName)
         {
@@ -134,6 +170,8 @@ namespace ConsoleApp1
         
         public void Render()
         {
+            SDL.SDL_SetRenderDrawColor(myRenderer, 0, 0, 0, 0);
+            SDL.SDL_RenderClear(myRenderer);
             scene.Render();
 
             for (int y = 0; y < backBuffer.GetLength(0); y++)
@@ -151,13 +189,12 @@ namespace ConsoleApp1
                     frontBuffer[y, x] = backBuffer[y, x];
                 }
             }
+            SDL.SDL_RenderPresent(myRenderer);
         }
 
 
         public void Run()
         {
-            coManager =  new CoroutineManager();
-
             isRunning = true;
             Console.CursorVisible = false;
 
@@ -165,36 +202,23 @@ namespace ConsoleApp1
             float frameTime = 1000.0f / 60.0f;
             float elapsedTime = 0.0f;
 
-            while (isRunning) 
+            while (isRunning)
             {
+                //Event 처리
+                SDL.SDL_PollEvent(out myEvent);
                 Time.Update();
-                if(elapsedTime >= frameTime)
+                switch (myEvent.type)
                 {
-                    FixedUpate();
-                    ProcessInput();
-                    Update();
-                    coManager.Update();
-                    Render();
-                    Input.ClearInput();
-                    elapsedTime = 0.0f;
+                    case SDL.SDL_EventType.SDL_QUIT:
+                        isRunning = false;
+                        break;
+                    default:
+                        break;
                 }
-                else
-                {
-                    elapsedTime += Time.DeltaTime;
-                }
-            }
 
-            if (false == isRunning) 
-            {
-                OnApplicationQuit();
+                Update();
+                Render();
             }
-        }
-
-        private void OnApplicationQuit()
-        {
-            Console.Clear();
-            Console.WriteLine("게임 오버");
-            Console.WriteLine($"클리어한 횟수 : {stageLevel}");
         }
 
         public void UpgradeNextStage()
@@ -204,8 +228,6 @@ namespace ConsoleApp1
             Load("level01.map");
         }
 
-
         public Scene scene;
-        
     }
 }

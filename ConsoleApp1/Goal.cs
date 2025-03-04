@@ -15,6 +15,11 @@ namespace ConsoleApp1
             this.shape = shape;
             orderLayer = 3;
             isTrigger = true;
+
+            color.r = 0;
+            color.g = 255;
+            color.b = 0;
+            color.a = 255;
         }
     }
 }

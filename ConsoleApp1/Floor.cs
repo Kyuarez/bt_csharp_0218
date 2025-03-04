@@ -14,6 +14,11 @@ namespace ConsoleApp1
             this.position = position;
             this.shape = shape;
             orderLayer = 1;
+
+            color.r = 0;
+            color.g = 0;
+            color.b = 0;
+            color.a = 255;
         }
     }
 }

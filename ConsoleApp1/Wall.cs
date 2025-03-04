@@ -15,6 +15,11 @@ namespace ConsoleApp1
             this.shape = shape;
             orderLayer = 2;
             isCollide = true;
+
+            color.r = 255;
+            color.g = 255;
+            color.b = 255;
+            color.a = 255;
         }
 
         

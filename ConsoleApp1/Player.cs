@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDL2;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,7 +20,10 @@ namespace ConsoleApp1
             orderLayer = 4;
             isTrigger = true;
 
-
+            color.r = 0;
+            color.g = 0;
+            color.b = 255;
+            color.a = 255;
         }
         public override void FixedUpdate()
         {
@@ -27,43 +31,37 @@ namespace ConsoleApp1
         }
         public override void Update()
         {
-            if(test == false)
+            Vector2 move = position;
+            if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_w) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_UP))
             {
-                CoroutineManager.StartCoroutine(CoTestMove());
-                test = true;
+                if (false == PredictCollision(new Vector2(position.x, position.y - 1)))
+                {
+                    move = new Vector2(position.x, position.y - 1);
+                }
+            }
+            else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_s) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_DOWN))
+            {
+                if (false == PredictCollision(new Vector2(position.x, position.y + 1)))
+                {
+                    move = new Vector2(position.x, position.y + 1);
+                }
+            }
+            else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_a) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_LEFT))
+            {
+                if (false == PredictCollision(new Vector2(position.x - 1, position.y)))
+                {
+                    move = new Vector2(position.x - 1, position.y);
+                }
+            }
+            else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_d) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_RIGHT))
+            {
+                if (false == PredictCollision(new Vector2(position.x + 1, position.y)))
+                {
+                    move = new Vector2(position.x + 1, position.y);
+                }
             }
 
-            //Vector2 move = position;
-            //if (true == Input.GetKeyDonw(ConsoleKey.UpArrow))
-            //{
-            //    if (false == PredictCollision(new Vector2(position.x, position.y - 1)))
-            //    {
-            //        move = new Vector2(position.x, position.y - 1);
-            //    }
-            //}
-            //else if (true == Input.GetKeyDonw(ConsoleKey.DownArrow))
-            //{
-            //    if (false == PredictCollision(new Vector2(position.x, position.y + 1)))
-            //    {
-            //        move = new Vector2(position.x, position.y + 1);
-            //    }
-            //}
-            //else if (true == Input.GetKeyDonw(ConsoleKey.LeftArrow))
-            //{
-            //    if (false == PredictCollision(new Vector2(position.x - 1, position.y)))
-            //    {
-            //        move = new Vector2(position.x - 1, position.y);
-            //    }
-            //}
-            //else if (true == Input.GetKeyDonw(ConsoleKey.RightArrow))
-            //{
-            //    if (false == PredictCollision(new Vector2(position.x + 1, position.y)))
-            //    {
-            //        move = new Vector2(position.x + 1, position.y);
-            //    }
-            //}
-
-            //position = move;
+            position = move;
         }
 
         public override void Render()
@@ -73,6 +71,7 @@ namespace ConsoleApp1
             //Console.Write(shape);
 
             //Input to Buffer
+            base.Render();
             Engine.backBuffer[position.y, position.x] = shape;
         }
 
@@ -97,12 +96,5 @@ namespace ConsoleApp1
 
         }
 
-        private IEnumerator CoTestMove()
-        {
-            yield return new WaitForSeconds(5f);
-            position = new Vector2(position.x, position.y + 1);
-            yield return new WaitForSeconds(5f);
-            position = new Vector2(position.x, position.y + 1);
-        }
     }
 }
