@@ -205,8 +205,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.2733658, y: 0.3650242, z: -0.113042764, w: -0.8827512}
-  m_LocalPosition: {x: 2.1749878, y: 2.0649524, z: -2.2066746}
+  m_LocalRotation: {x: 0.02880299, y: -0.014997095, z: 0.0004369989, w: 0.9994725}
+  m_LocalPosition: {x: 1.2190133, y: 0.70131284, z: -19.499098}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -543,6 +543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1635978838}
+  - component: {fileID: 1635978839}
   m_Layer: 0
   m_Name: Airplane
   m_TagString: Untagged
@@ -567,6 +568,18 @@ Transform:
   - {fileID: 1523983139}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1635978839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635978837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3496b061895e194da2745f16252317b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1660745594
 GameObject:
   m_ObjectHideFlags: 0
