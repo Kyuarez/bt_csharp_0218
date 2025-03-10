@@ -178,13 +178,9 @@ namespace ConsoleApp1
             }
             
             scene.Sort();
+            //@tk : 인스턴스 생성한 순간 호출
+            scene.Awake();
         }
-
-        //public void Load(int stageLevel)
-        //{
-        //    scene = new Scene(stageLevel);
-        //    scene.Sort();
-        //}
 
         public void ProcessInput()
         {

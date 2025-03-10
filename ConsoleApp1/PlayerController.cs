@@ -11,44 +11,42 @@ namespace ConsoleApp1
 {
     public class PlayerController : Component
     {
-      
+        public SpriteRenderer spr;
+
+        public override void Awake()
+        {
+            base.Awake();
+            spr = gameObject.GetComponent<SpriteRenderer>();
+        }
+
         public override void Update()
         {
-            //Vector2 move = position;
-            //if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_w) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_UP))
-            //{
-            //    spriteIndexY = 2;
-            //    if (false == PredictCollision(new Vector2(position.x, position.y - 1)))
-            //    {
-            //        move = new Vector2(position.x, position.y - 1);
-            //    }
-            //}
-            //else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_s) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_DOWN))
-            //{
-            //    spriteIndexY = 3;
-            //    if (false == PredictCollision(new Vector2(position.x, position.y + 1)))
-            //    {
-            //        move = new Vector2(position.x, position.y + 1);
-            //    }
-            //}
-            //else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_a) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_LEFT))
-            //{
-            //    spriteIndexY = 0;
-            //    if (false == PredictCollision(new Vector2(position.x - 1, position.y)))
-            //    {
-            //        move = new Vector2(position.x - 1, position.y);
-            //    }
-            //}
-            //else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_d) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_RIGHT))
-            //{
-            //    spriteIndexY = 1;
-            //    if (false == PredictCollision(new Vector2(position.x + 1, position.y)))
-            //    {
-            //        move = new Vector2(position.x + 1, position.y);
-            //    }
-            //}
+            Vector2 move = gameObject.transform.position;
+            if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_w) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_UP))
+            {
+                spr.SpriteIndexY = 2;
+                move = new Vector2(move.x, move.y - 1);
+                //if (false == PredictCollision(new Vector2(position.x, position.y - 1)))
+                //{
+                //}
+            }
+            else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_s) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_DOWN))
+            {
+                spr.SpriteIndexY = 3;
+                move = new Vector2(move.x, move.y + 1);
+            }
+            else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_a) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_LEFT))
+            {
+                spr.SpriteIndexY = 0;
+                move = new Vector2(move.x - 1, move.y);
+            }
+            else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_d) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_RIGHT))
+            {
+                spr.SpriteIndexY = 1;
+                move = new Vector2(move.x + 1, move.y);
+            }
 
-            //position = move;
+            gameObject.transform.position = move;
         }
 
         public void OnTrigger(Vector2 position)

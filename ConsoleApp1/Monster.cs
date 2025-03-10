@@ -13,46 +13,41 @@ namespace ConsoleApp1
 
         public override void Update()
         {
-            //if(elapsedTime > 100f)
-            //{
-            //    elapsedTime = 0.0f;
-            //    Random random = new Random();
-            //    int rndNum = random.Next(0, 4);
-            //    Vector2 move = position;
+            if (elapsedTime > 100f)
+            {
+                elapsedTime = 0.0f;
+                Random random = new Random();
+                int rndNum = random.Next(0, 4);
+                Vector2 move = gameObject.transform.position;
 
-            //    if (rndNum == 0)
-            //    {
-            //        if (false == PredictCollision(new Vector2(position.x, position.y - 1)))
-            //        {
-            //            move = new Vector2(position.x, position.y - 1);
-            //        }
-            //    }
-            //    else if (rndNum == 1)
-            //    {
-            //        if (false == PredictCollision(new Vector2(position.x, position.y + 1)))
-            //        {
-            //            move = new Vector2(position.x, position.y + 1);
-            //        }
-            //    }
-            //    else if (rndNum == 2)
-            //    {
-            //        if (false == PredictCollision(new Vector2(position.x - 1, position.y)))
-            //        {
-            //            move = new Vector2(position.x - 1, position.y);
-            //        }
-            //    }
-            //    else if (rndNum == 3)
-            //    {
-            //        if (false == PredictCollision(new Vector2(position.x + 1, position.y)))
-            //        {
-            //            move = new Vector2(position.x + 1, position.y);
-            //        }
-            //    }
+                if (rndNum == 0)
+                {
+                    move = new Vector2(move.x, move.y - 1);
+                    //if (false == PredictCollision(new Vector2(move.x, move.y - 1)))
+                    //{
+                    //    move = new Vector2(move.x, move.y - 1);
+                    //}
+                }
+                else if (rndNum == 1)
+                {
+                    move = new Vector2(move.x, move.y + 1);
 
-            //    position = move;
-            //}
+                }
+                else if (rndNum == 2)
+                {
+                    move = new Vector2(move.x - 1, move.y);
 
-            //elapsedTime += Time.DeltaTime;
+                }
+                else if (rndNum == 3)
+                {
+                    move = new Vector2(move.x + 1, move.y);
+
+                }
+
+                gameObject.transform.position = move;
+            }
+
+            elapsedTime += Time.DeltaTime;
         }
     }
 }

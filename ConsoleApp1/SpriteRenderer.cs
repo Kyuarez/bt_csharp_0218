@@ -32,6 +32,16 @@ namespace ConsoleApp1
         public int maxCellCountX = 5;
         public int maxCellCountY = 5;
 
+        //@tk 추후 따로 빼야할 듯.
+        public int SpriteIndexY
+        {
+            get { return spriteIndexY; }
+            set
+            {
+                spriteIndexY = value;
+            }
+        }
+
 
         public SpriteRenderer()
         {
@@ -135,5 +145,6 @@ namespace ConsoleApp1
                 colorKey.a = 255;
             }
         }
+
     }
 }

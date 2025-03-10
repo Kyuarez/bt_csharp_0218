@@ -61,6 +61,17 @@ namespace ConsoleApp1
             }
         }
 
+        public void Awake()
+        {
+            for (int i = 0; i < gameObjects.Count; i++)
+            {
+                foreach (var component in gameObjects[i].AllComponents)
+                {
+                    component.Awake();
+                }
+            }
+        }
+
         //충돌 체크
         public void FixedUpdate()
         {
