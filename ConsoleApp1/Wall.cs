@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ConsoleApp1
 {
@@ -16,10 +17,12 @@ namespace ConsoleApp1
             orderLayer = 2;
             isCollide = true;
 
-            color.r = 255;
-            color.g = 255;
-            color.b = 255;
-            color.a = 255;
+            //color.r = 255;
+            //color.g = 255;
+            //color.b = 255;
+            //color.a = 255;
+
+            LoadBMP("data/wall.bmp");
         }
 
         

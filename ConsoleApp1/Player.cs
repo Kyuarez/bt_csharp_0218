@@ -19,11 +19,14 @@ namespace ConsoleApp1
             this.shape = shape;
             orderLayer = 4;
             isTrigger = true;
+            isAnimation = true;
 
-            color.r = 0;
-            color.g = 0;
-            color.b = 255;
-            color.a = 255;
+            //color.r = 0;
+            //color.g = 0;
+            //color.b = 255;
+            //color.a = 255;
+
+            LoadBMP("data/player.bmp");
         }
         public override void FixedUpdate()
         {
@@ -34,6 +37,7 @@ namespace ConsoleApp1
             Vector2 move = position;
             if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_w) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_UP))
             {
+                spriteIndexY = 2;
                 if (false == PredictCollision(new Vector2(position.x, position.y - 1)))
                 {
                     move = new Vector2(position.x, position.y - 1);
@@ -41,6 +45,7 @@ namespace ConsoleApp1
             }
             else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_s) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_DOWN))
             {
+                spriteIndexY = 3;
                 if (false == PredictCollision(new Vector2(position.x, position.y + 1)))
                 {
                     move = new Vector2(position.x, position.y + 1);
@@ -48,6 +53,7 @@ namespace ConsoleApp1
             }
             else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_a) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_LEFT))
             {
+                spriteIndexY = 0;
                 if (false == PredictCollision(new Vector2(position.x - 1, position.y)))
                 {
                     move = new Vector2(position.x - 1, position.y);
@@ -55,6 +61,7 @@ namespace ConsoleApp1
             }
             else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_d) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_RIGHT))
             {
+                spriteIndexY = 1;
                 if (false == PredictCollision(new Vector2(position.x + 1, position.y)))
                 {
                     move = new Vector2(position.x + 1, position.y);

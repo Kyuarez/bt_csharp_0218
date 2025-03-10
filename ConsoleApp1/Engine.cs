@@ -217,6 +217,7 @@ namespace ConsoleApp1
                 }
 
                 Update();
+
                 Render();
             }
         }

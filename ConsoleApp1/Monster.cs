@@ -19,10 +19,12 @@ namespace ConsoleApp1
             orderLayer = 5;
             isTrigger = true;
 
-            color.r = 255;
-            color.g = 0;
-            color.b = 0;
-            color.a = 255;
+            //color.r = 255;
+            //color.g = 0;
+            //color.b = 0;
+            //color.a = 255;
+
+            LoadBMP("data/monster.bmp");
         }
 
         public override void FixedUpdate()
@@ -32,7 +34,7 @@ namespace ConsoleApp1
 
         public override void Update()
         {
-            if(elapsedTime > 0.005f)
+            if(elapsedTime > 100f)
             {
                 elapsedTime = 0.0f;
                 Random random = new Random();

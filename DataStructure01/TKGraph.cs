@@ -30,6 +30,76 @@ namespace DataStructureTK
             adjacents[from].Add(to);
             adjacents[to].Add(from);
         }
+
+        public void DFS(int start)
+        {
+            bool[] visited = new bool[vertexCount];
+            DFSRecursive(start, visited);
+        }
+
+        private void DFSRecursive(int vertex, bool[] visited)
+        {
+            visited[vertex] = true;
+            //Debug
+            Console.WriteLine($"{vertex.ToString()} vertex is visited!");
+
+            foreach (int adjacent in adjacents[vertex])
+            {
+                if(false == visited[adjacent])
+                {
+                    DFSRecursive(adjacent, visited);
+                }
+            }
+        }
+
+        public void DFSByStack(int start)
+        {
+            bool[] visited = new bool[vertexCount];
+            Stack<int> stack = new Stack<int>();
+
+            stack.Push(start);
+
+            while(stack.Count > 0)
+            {
+                int vertex = stack.Pop();
+
+                if(false == visited[vertex])
+                {
+                    visited[vertex] = true;
+
+                    foreach (int adjacent in adjacents[vertex].OrderByDescending(n => n))
+                    {
+                        if (false == visited[adjacent])
+                        {
+                            stack.Push(adjacent);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void BFS(int start)
+        {
+            bool[] visited = new bool[vertexCount];
+            Queue<int> queue = new Queue<int>();
+
+            visited[start] = true;
+            queue.Enqueue(start);
+
+            while (queue.Count > 0) 
+            {
+                int vertex = queue.Dequeue();
+
+                foreach (int adjacent in adjacents[vertex])
+                {
+                    if(false == visited[adjacent])
+                    {
+                        visited[adjacent] = true;
+                        queue.Enqueue(adjacent);
+                    }
+                }
+            }
+        }
     }
 
     /// <summary>
