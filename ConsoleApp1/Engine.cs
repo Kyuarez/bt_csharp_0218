@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConsoleApp1
@@ -115,7 +117,12 @@ namespace ConsoleApp1
                 {
                     if (map[y][x] == Define.SHAPE_WALL)
                     {
-                        Wall wall = new Wall(new Vector2(x, y), map[y][x]);
+                        GameObject wall = new GameObject();
+                        wall.Name = "wall";
+                        wall.transform.position = new Vector2(x, y);
+                        SpriteRenderer spr = wall.AddComponent(new SpriteRenderer());
+                        spr.LoadBMP("wall.bmp");
+                        spr.orderLayer = 1;
                         scene.Instantiate(wall);
                     }
                     else if (map[y][x] == Define.SHAPE_FLOOR)
@@ -125,21 +132,47 @@ namespace ConsoleApp1
                     }
                     else if (map[y][x] == Define.SHAPE_PLAYER)
                     {
-                        Player player = new Player(new Vector2(x, y), map[y][x]);
+                        GameObject player = new GameObject();
+                        player.Name = "player";
+                        player.transform.position = new Vector2(x, y);
+
+                        player.AddComponent(new PlayerController());
+
+                        SpriteRenderer spr = player.AddComponent(new SpriteRenderer());
+                        spr.LoadBMP("player.bmp", true);
+                        spr.orderLayer = 5;
                         scene.Instantiate(player);
                     }
                     else if (map[y][x] == Define.SHAPE_MONSTER)
                     {
-                        Monster monster = new Monster(new Vector2(x, y), map[y][x]);
+                        GameObject monster = new GameObject();
+                        monster.Name = "monster";
+                        monster.transform.position = new Vector2(x, y);
+
+                        monster.AddComponent(new Monster());
+
+                        SpriteRenderer spr = monster.AddComponent(new SpriteRenderer());
+                        spr.LoadBMP("monster.bmp");
+                        spr.orderLayer = 4;
                         scene.Instantiate(monster);
                     }
                     else if (map[y][x] == Define.SHAPE_GOAL)
                     {
-                        Goal goal = new Goal(new Vector2(x, y), map[y][x]);
+                        GameObject goal = new GameObject();
+                        goal.Name = "goal";
+                        goal.transform.position = new Vector2(x, y);
+                        SpriteRenderer spr = goal.AddComponent(new SpriteRenderer());
+                        spr.LoadBMP("goal.bmp");
+                        spr.orderLayer = 3;
                         scene.Instantiate(goal);
                     }
 
-                    Floor floor = new Floor(new Vector2(x, y), Define.SHAPE_FLOOR);
+                    GameObject floor = new GameObject();
+                    floor.Name = "floor";
+                    floor.transform.position = new Vector2(x, y);
+                    SpriteRenderer spriteRenderer = floor.AddComponent(new SpriteRenderer());
+                    spriteRenderer.LoadBMP("floor.bmp");
+                    spriteRenderer.orderLayer = 0;
                     scene.Instantiate(floor);
                 }
             }

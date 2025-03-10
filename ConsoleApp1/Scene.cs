@@ -12,7 +12,8 @@ namespace ConsoleApp1
     public class Scene
     {
         //public static GameObject[] gameObjects;
-        private List<GameObject> gameObjects = new List<GameObject> ();        
+        private List<GameObject> gameObjects = new List<GameObject>();  
+        private List<GameObject> renderObjList = new List<GameObject>();
 
         public List<GameObject> GetAllGameObjects
         {
@@ -29,15 +30,32 @@ namespace ConsoleApp1
 
         public void Sort()
         {
+            renderObjList = new List<GameObject>();
             for (int i = 0; i < gameObjects.Count; i++)
             {
-                for (int j = i + 1; j < gameObjects.Count; j++)
+                SpriteRenderer spr = gameObjects[i].GetComponent<SpriteRenderer>();
+
+                if(spr == null)
                 {
-                    if (gameObjects[i].orderLayer - gameObjects[j].orderLayer > 0)
+                    continue;
+                }
+
+                renderObjList.Add(gameObjects[i]);
+            }
+
+
+            for (int i = 0; i < renderObjList.Count; i++)
+            {
+                for (int j = i + 1; j < renderObjList.Count; j++)
+                {
+                    SpriteRenderer spr1 = renderObjList[i].GetComponent<SpriteRenderer>();
+                    SpriteRenderer spr2 = renderObjList[j].GetComponent<SpriteRenderer>();
+                    
+                    if (spr1.orderLayer - spr2.orderLayer > 0)
                     {
-                        GameObject tempObj = gameObjects[i];
-                        gameObjects[i] = gameObjects[j];
-                        gameObjects[j] = tempObj;
+                        GameObject tempObj = renderObjList[i];
+                        renderObjList[i] = renderObjList[j];
+                        renderObjList[j] = tempObj;
                     }
                 }
             }
@@ -56,15 +74,19 @@ namespace ConsoleApp1
         {
             for (int i = 0; i < gameObjects.Count; i++)
             {
-                gameObjects[i].Update();
+                foreach (var component in gameObjects[i].AllComponents)
+                {
+                    component.Update();
+                }
             }
         }
 
         public void Render()
         {
-            for (int i = 0; i < gameObjects.Count; i++)
+            for (int i = 0; i < renderObjList.Count; i++)
             {
-                gameObjects[i].Render();
+                SpriteRenderer spriteRenderer = renderObjList[i].GetComponent<SpriteRenderer>();
+                spriteRenderer.Render();
             }
         }
     }

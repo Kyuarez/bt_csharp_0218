@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDL_Sample", "..\SDL_Sample
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TK_Maze", "..\TK_Maze\TK_Maze.csproj", "{DE0582C9-EAB2-40B4-85A1-2A690983266E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionEx", "..\ReflectionEx\ReflectionEx.csproj", "{FB2970D1-F238-4B52-A9CA-7DDB297661E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{DE0582C9-EAB2-40B4-85A1-2A690983266E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE0582C9-EAB2-40B4-85A1-2A690983266E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE0582C9-EAB2-40B4-85A1-2A690983266E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB2970D1-F238-4B52-A9CA-7DDB297661E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB2970D1-F238-4B52-A9CA-7DDB297661E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB2970D1-F238-4B52-A9CA-7DDB297661E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB2970D1-F238-4B52-A9CA-7DDB297661E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

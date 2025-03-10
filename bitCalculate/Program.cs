@@ -25,14 +25,31 @@
     {
         static void Main(string[] args)
         {
-            byte a = 0; //0000 0001
-            a = 1 << 1; //0000 0010
-            Console.WriteLine(a);
+            //byte a = 0; //0000 0001
+            //a = 1 << 1; //0000 0010
+            //Console.WriteLine(a);
 
 
-            int R = 0xFF;
-            R = 255;
-            R = 0b11111111;
+            //int R = 0xFF;
+            //R = 255;
+            //R = 0b11111111;
+
+            int[] a = [10, 20, 30, 40, 50];
+
+            unsafe
+            {
+                fixed (int* p = &a[0])
+                {
+                    int* p2 = p;
+                    Console.WriteLine(*p2);
+
+                    p2 += 1;
+                    p2 += 1;
+                    Console.WriteLine(*p2);
+                    Console.WriteLine("--------");
+                    Console.WriteLine(*p);
+                }
+            }
         }
     }
 }
