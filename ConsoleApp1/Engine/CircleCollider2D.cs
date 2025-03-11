@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    public class Goal : GameObject
+    public class CircleCollider2D : Collider2D
     {
-        
     }
 }

@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    public class Wall : GameObject
+    public class Collider2D : Component
     {
-        
+        public bool isTrigger = false;
 
-        
+        public override void Update()
+        {
+            
+        }
     }
 }

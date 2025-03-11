@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    public class Monster : Component
+    public class AIController : Component
     {
         private float elapsedTime = 0.0f;
 

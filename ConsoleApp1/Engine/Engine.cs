@@ -72,6 +72,8 @@ namespace ConsoleApp1
                 SDL.SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC |
                 SDL.SDL_RendererFlags.SDL_RENDERER_TARGETTEXTURE);
 
+            scene = new Scene();
+
             return true;
         }
 
@@ -109,8 +111,6 @@ namespace ConsoleApp1
                 sr.Close();
             }
                 
-            scene = new Scene();
-
             for (int y = 0; y < map.Count; y++)
             {
                 for (int x = 0; x < map[y].Length; x++)
@@ -124,6 +124,7 @@ namespace ConsoleApp1
                         spr.LoadBMP("wall.bmp");
                         spr.orderLayer = 1;
                         scene.Instantiate(wall);
+                        wall.AddComponent(new BoxCollider2D());
                     }
                     else if (map[y][x] == Define.SHAPE_FLOOR)
                     {
@@ -142,6 +143,8 @@ namespace ConsoleApp1
                         spr.LoadBMP("player.bmp", true);
                         spr.orderLayer = 5;
                         scene.Instantiate(player);
+
+                        player.AddComponent(new CharacterController2D());
                     }
                     else if (map[y][x] == Define.SHAPE_MONSTER)
                     {
@@ -149,7 +152,7 @@ namespace ConsoleApp1
                         monster.Name = "monster";
                         monster.transform.position = new Vector2(x, y);
 
-                        monster.AddComponent(new Monster());
+                        monster.AddComponent(new AIController());
 
                         SpriteRenderer spr = monster.AddComponent(new SpriteRenderer());
                         spr.LoadBMP("monster.bmp");
@@ -258,6 +261,12 @@ namespace ConsoleApp1
             Load("level01.map");
         }
 
+        public void SetSortCompare(Scene.SortCompare inSortCompare)
+        {
+            scene.sortCompare = inSortCompare;
+        }
+
         public Scene scene;
     }
+
 }

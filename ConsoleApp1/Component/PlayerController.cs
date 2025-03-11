@@ -12,11 +12,13 @@ namespace ConsoleApp1
     public class PlayerController : Component
     {
         public SpriteRenderer spr;
+        public CharacterController2D characterController;
 
         public override void Awake()
         {
             base.Awake();
             spr = gameObject.GetComponent<SpriteRenderer>();
+            characterController = gameObject.GetComponent<CharacterController2D>();
         }
 
         public override void Update()
@@ -25,25 +27,34 @@ namespace ConsoleApp1
             if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_w) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_UP))
             {
                 spr.SpriteIndexY = 2;
-                move = new Vector2(move.x, move.y - 1);
-                //if (false == PredictCollision(new Vector2(position.x, position.y - 1)))
-                //{
-                //}
+                if (characterController.Move(new Vector2(move.x, move.y - 1)) == true)
+                {
+                    move = new Vector2(move.x, move.y - 1);
+                }
             }
             else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_s) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_DOWN))
             {
                 spr.SpriteIndexY = 3;
-                move = new Vector2(move.x, move.y + 1);
+                if (characterController.Move(new Vector2(move.x, move.y + 1)) == true)
+                {
+                    move = new Vector2(move.x, move.y + 1);
+                }
             }
             else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_a) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_LEFT))
             {
                 spr.SpriteIndexY = 0;
-                move = new Vector2(move.x - 1, move.y);
+                if (characterController.Move(new Vector2(move.x - 1, move.y)) == true)
+                {
+                    move = new Vector2(move.x - 1, move.y);
+                }
             }
             else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_d) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_RIGHT))
             {
                 spr.SpriteIndexY = 1;
-                move = new Vector2(move.x + 1, move.y);
+                if (characterController.Move(new Vector2(move.x + 1, move.y)) == true)
+                {
+                    move = new Vector2(move.x + 1, move.y);
+                }
             }
 
             gameObject.transform.position = move;
@@ -57,18 +68,19 @@ namespace ConsoleApp1
 
                 if (obj.isTrigger == true && obj.transform.position == position)
                 {
-                    if(obj.GetType() == typeof(Monster))
+                    if(obj.GetType() == typeof(AIController))
                     {
                         Engine.Instance.IsRunning = false;
                     }
-                    else if (obj.GetType() == typeof(Goal))
-                    {
-                        Engine.Instance.UpgradeNextStage();
-                    }
+                    //else if (obj.GetType() == typeof(Goal))
+                    //{
+                    //    Engine.Instance.UpgradeNextStage();
+                    //}
                 }
             }
 
         }
+
 
     }
 }
