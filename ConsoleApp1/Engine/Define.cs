@@ -15,6 +15,7 @@ namespace ConsoleApp1
         public const char SHAPE_GOAL = 'G';
 
         public const string FILEPATH_MAP = "C:\\Users\\user\\Documents\\GitHub\\bt_csharp_0218\\ConsoleApp1\\";
+        public static readonly string DATAPATH = Directory.GetParent(System.Environment.CurrentDirectory).Parent.Parent.FullName + "/data/";
     }
 
     public struct Vector2

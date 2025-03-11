@@ -49,6 +49,7 @@ namespace ConsoleApp1
 
         public IntPtr myWindow;
         public IntPtr myRenderer;
+        public IntPtr myFont;
         public SDL.SDL_Event myEvent;
 
         public bool Init()
@@ -72,6 +73,11 @@ namespace ConsoleApp1
                 SDL.SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC |
                 SDL.SDL_RendererFlags.SDL_RENDERER_TARGETTEXTURE);
 
+            //Font
+            SDL_ttf.TTF_Init();
+            //myFont = SDL_ttf.TTF_OpenFont(Define.DATAPATH, 30);
+            myFont = SDL_ttf.TTF_OpenFont("c:/Windows/Fonts/guilm.ttc", 30);
+
             scene = new Scene();
 
             return true;
@@ -79,9 +85,12 @@ namespace ConsoleApp1
 
         public bool Quit()
         {
+            IsRunning = false;
+
             SDL.SDL_DestroyRenderer(myRenderer);
             SDL.SDL_DestroyWindow(myWindow);
             SDL.SDL_Quit();
+            SDL_ttf.TTF_Quit();
             return true;
         }
 
@@ -157,6 +166,8 @@ namespace ConsoleApp1
                         SpriteRenderer spr = monster.AddComponent(new SpriteRenderer());
                         spr.LoadBMP("monster.bmp");
                         spr.orderLayer = 4;
+                        CharacterController2D characterController = monster.AddComponent(new CharacterController2D());
+                        characterController.isTrigger = true;
                         scene.Instantiate(monster);
                     }
                     else if (map[y][x] == Define.SHAPE_GOAL)
@@ -167,6 +178,8 @@ namespace ConsoleApp1
                         SpriteRenderer spr = goal.AddComponent(new SpriteRenderer());
                         spr.LoadBMP("goal.bmp");
                         spr.orderLayer = 3;
+                        BoxCollider2D boxCollider = goal.AddComponent(new BoxCollider2D());
+                        boxCollider.isTrigger = true;
                         scene.Instantiate(goal);
                     }
 
@@ -180,9 +193,16 @@ namespace ConsoleApp1
                 }
             }
             
+            GameObject gameManager = new GameObject();
+            gameManager.Name = "GameManager";
+            gameManager.AddComponent(new GameManager());
+            scene.Instantiate(gameManager);
+            
+            
             scene.Sort();
             //@tk : 인스턴스 생성한 순간 호출
             scene.Awake();
+
         }
 
         public void ProcessInput()

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,7 +47,8 @@ namespace ConsoleApp1
 
         public void Initialize() 
         {
-            _transform = AddComponent<Transform>(new Transform());
+            _transform = new Transform();
+            AddComponent<Transform>(_transform);
         }
 
 
@@ -84,19 +86,35 @@ namespace ConsoleApp1
 
         }
 
-        public bool PredictCollision(Vector2 position)
+        public void ExcuteMethod(string methodName, Object[] param)
         {
-            for (int i = 0; i < Engine.Instance.scene.GetAllGameObjects.Count; i++)
+            //Reflection
+            foreach (var component in AllComponents)
             {
-                GameObject obj = Engine.Instance.scene.GetAllGameObjects[i];
+                Type type = component.GetType();
+                MethodInfo[] methods = type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
-                if (obj.isCollide == true && obj.transform.position == position)
+                foreach (MethodInfo method in methods)
                 {
-                    return true;
+                    if (method.Name.CompareTo(methodName) == 0)
+                    {
+                        method.Invoke(component, param);
+                    }
+                }
+            }
+        }
+
+        public static GameObject Find(string gameObjectName)
+        {
+            foreach (var obj in Engine.Instance.scene.GetAllGameObjects)
+            {
+                if(obj.Name.CompareTo(gameObjectName) == 0)
+                {
+                    return obj;
                 }
             }
 
-            return false;
+            return null;
         }
     }
 }

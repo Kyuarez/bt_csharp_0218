@@ -27,60 +27,37 @@ namespace ConsoleApp1
             if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_w) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_UP))
             {
                 spr.SpriteIndexY = 2;
-                if (characterController.Move(new Vector2(move.x, move.y - 1)) == true)
-                {
-                    move = new Vector2(move.x, move.y - 1);
-                }
+                characterController.Move(new Vector2(move.x, move.y - 1));
+                
             }
             else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_s) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_DOWN))
             {
                 spr.SpriteIndexY = 3;
-                if (characterController.Move(new Vector2(move.x, move.y + 1)) == true)
-                {
-                    move = new Vector2(move.x, move.y + 1);
-                }
+                characterController.Move(new Vector2(move.x, move.y + 1));
             }
             else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_a) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_LEFT))
             {
                 spr.SpriteIndexY = 0;
-                if (characterController.Move(new Vector2(move.x - 1, move.y)) == true)
-                {
-                    move = new Vector2(move.x - 1, move.y);
-                }
+                characterController.Move(new Vector2(move.x - 1, move.y));
+                
             }
             else if (true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_d) || true == Input.GetKeyDown(SDL.SDL_Keycode.SDLK_RIGHT))
             {
                 spr.SpriteIndexY = 1;
-                if (characterController.Move(new Vector2(move.x + 1, move.y)) == true)
-                {
-                    move = new Vector2(move.x + 1, move.y);
-                }
+                characterController.Move(new Vector2(move.x + 1, move.y));
             }
-
-            gameObject.transform.position = move;
         }
 
-        public void OnTrigger(Vector2 position)
+        public void OnTriggerEnter2D(Collider2D other)
         {
-            for (int i = 0; i < Engine.Instance.scene.GetAllGameObjects.Count; i++)
+            if(other.gameObject.Name == "monster")
             {
-                GameObject obj = Engine.Instance.scene.GetAllGameObjects[i];
-
-                if (obj.isTrigger == true && obj.transform.position == position)
-                {
-                    if(obj.GetType() == typeof(AIController))
-                    {
-                        Engine.Instance.IsRunning = false;
-                    }
-                    //else if (obj.GetType() == typeof(Goal))
-                    //{
-                    //    Engine.Instance.UpgradeNextStage();
-                    //}
-                }
+                GameManager.Instance.isGameOver = true;
             }
-
+            if(other.gameObject.Name == "goal")
+            {
+                GameManager.Instance.isFinish = true;
+            }
         }
-
-
     }
 }

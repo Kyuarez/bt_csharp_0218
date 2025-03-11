@@ -15,15 +15,20 @@ namespace ConsoleApp1
             
         }
 
+        /// <summary>
+        /// x, y에 factor 값 더하기
+        /// </summary>
         public void Translate(int addX, int addY)
         {
             position.x += addX;
             position.y += addY;
         }
-        public void Translate(Vector2 pos)
+        /// <summary>
+        /// destination으로 바로 이동 (대입)
+        /// </summary>
+        public void Translate(Vector2 destination)
         {
-            position.x += pos.x;
-            position.y += pos.y;
+            position = destination;
         }
     }
 }

@@ -81,13 +81,13 @@ namespace ConsoleApp1
         {
             for (int i = 0; i < gameObjects.Count; i++)
             {
-                SpriteRenderer spriteRenderer = gameObjects[i].GetComponent<SpriteRenderer>();
-                if (spriteRenderer == null)
+                Renderer renderer = gameObjects[i].GetComponent<Renderer>();
+                if (renderer == null)
                 {
                     continue;
                 }
 
-                spriteRenderer.Render();
+                renderer.Render();
             }
         }
     }

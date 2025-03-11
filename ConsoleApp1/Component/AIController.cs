@@ -10,6 +10,13 @@ namespace ConsoleApp1
     public class AIController : Component
     {
         private float elapsedTime = 0.0f;
+        private CharacterController2D characterController;
+
+        public override void Awake()
+        {
+            base.Awake();
+            characterController = GetComponent<CharacterController2D>();
+        }
 
         public override void Update()
         {
@@ -22,32 +29,28 @@ namespace ConsoleApp1
 
                 if (rndNum == 0)
                 {
-                    move = new Vector2(move.x, move.y - 1);
-                    //if (false == PredictCollision(new Vector2(move.x, move.y - 1)))
-                    //{
-                    //    move = new Vector2(move.x, move.y - 1);
-                    //}
+                    characterController.Move(new Vector2(move.x, move.y - 1));
                 }
                 else if (rndNum == 1)
                 {
-                    move = new Vector2(move.x, move.y + 1);
-
+                    characterController.Move(new Vector2(move.x, move.y + 1));
                 }
                 else if (rndNum == 2)
                 {
-                    move = new Vector2(move.x - 1, move.y);
-
+                    characterController.Move(new Vector2(move.x + 1, move.y));
                 }
                 else if (rndNum == 3)
                 {
-                    move = new Vector2(move.x + 1, move.y);
-
+                    characterController.Move(new Vector2(move.x - 1, move.y));
                 }
-
-                gameObject.transform.position = move;
             }
 
             elapsedTime += Time.DeltaTime;
+        }
+
+        public void OnTriggerEnter2D(Collider2D other)
+        {
+            Console.WriteLine($"{other.gameObject.Name} 이 오버랩 되었어요~!");
         }
     }
 }

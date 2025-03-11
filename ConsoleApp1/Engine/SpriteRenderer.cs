@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    public class SpriteRenderer : Component
+    public class SpriteRenderer : Renderer
     {
         public char shape;
         public SDL.SDL_Color color;
@@ -47,19 +47,20 @@ namespace ConsoleApp1
         {
 
         }
-        public SpriteRenderer(string fileName, bool isAnimation = false)
+        ~SpriteRenderer()
         {
-            
+            //SDL.SDL_DestroyTexture(mySurface);
+            SDL.SDL_DestroyTexture(myTexture);
         }
 
         public override void Update()
         {
             //Input to Buffer
             Engine.backBuffer[gameObject.transform.position.y, gameObject.transform.position.x] = shape;
-            destinationRect.x = gameObject.transform.position.x * 30;
-            destinationRect.y = gameObject.transform.position.y * 30;
-            destinationRect.w = 30;
-            destinationRect.h = 30;
+            destinationRect.x = gameObject.transform.position.x * spriteSize;
+            destinationRect.y = gameObject.transform.position.y * spriteSize;
+            destinationRect.w = spriteSize;
+            destinationRect.h = spriteSize;
 
             //@tk : 이거 null 해야하는데, c#은 제공안해줘서 임시 변수로 만듦. (원본 Rect)
             unsafe
@@ -99,24 +100,15 @@ namespace ConsoleApp1
             } 
         }
 
-        public virtual void Render()
-        {
-            unsafe
-            {
-                SDL.SDL_RenderCopy(Engine.Instance.myRenderer, myTexture, ref sourceRect, ref destinationRect); 
-            }
-        }
-
         public void LoadBMP(string filename, bool isAnimation = false)
         {
-            string projectFolder = Directory.GetParent(System.Environment.CurrentDirectory).Parent.Parent.FullName;
             this.fileName = filename;
             this.isAnimation = isAnimation;
 
             SetColorKey();
 
             //SDL C 접근할 수 있는게 없어서 unsafe 처리
-            mySurface = SDL.SDL_LoadBMP(projectFolder + "/data/" + filename);
+            mySurface = SDL.SDL_LoadBMP(Define.DATAPATH + filename);
             unsafe
             {
                 //누끼 따기 (칼리키 설정)
@@ -146,5 +138,12 @@ namespace ConsoleApp1
             }
         }
 
+        public override void Render()
+        {
+            unsafe
+            {
+                SDL.SDL_RenderCopy(Engine.Instance.myRenderer, myTexture, ref sourceRect, ref destinationRect);
+            }
+        }
     }
 }
