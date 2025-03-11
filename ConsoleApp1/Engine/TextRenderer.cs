@@ -19,7 +19,7 @@ namespace ConsoleApp1
         {
             content = inContent;
             surface = SDL_ttf.TTF_RenderUNICODE_Solid(Engine.Instance.myFont, content, color);
-            SDL.SDL_CreateTextureFromSurface(Engine.Instance.myRenderer, surface);
+            texture = SDL.SDL_CreateTextureFromSurface(Engine.Instance.myRenderer, surface);
 
             int w = 0;
             int h = 0;

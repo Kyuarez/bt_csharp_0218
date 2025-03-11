@@ -76,7 +76,7 @@ namespace ConsoleApp1
             //Font
             SDL_ttf.TTF_Init();
             //myFont = SDL_ttf.TTF_OpenFont(Define.DATAPATH, 30);
-            myFont = SDL_ttf.TTF_OpenFont("c:/Windows/Fonts/guilm.ttc", 30);
+            myFont = SDL_ttf.TTF_OpenFont("c:/Windows/Fonts/gulim.ttc", 30);
 
             scene = new Scene();
 
